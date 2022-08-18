@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-auth": "libs/api/auth",
+    "api-database": "libs/api/database",
+    "api-users": "libs/api/users",
+    "app-login-data-access": "libs/app/login/data-access",
+    "app-login-feature-login": "libs/app/login/feature/login",
+    "app-login-feature-recovery": "libs/app/login/feature/recovery",
+    "app-login-feature-shell": "libs/app/login/feature/shell",
+    "app-users-data-access": "libs/app/users/data-access",
+    "app-users-feature-edit": "libs/app/users/feature/edit",
+    "app-users-feature-list": "libs/app/users/feature/list",
+    "app-users-feature-shell": "libs/app/users/feature/shell",
+    "frontend-contest": "apps/frontend-contest",
+    "frontend-contest-e2e": "apps/frontend-contest-e2e",
+    "shared-api-interfaces": "libs/shared/api/interfaces",
+    "shared-app-data-access": "libs/shared/app/data-access"
+  }
+}

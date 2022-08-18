@@ -1,0 +1,104 @@
+{
+  "projectType": "application",
+  "sourceRoot": "apps/frontend-contest/src",
+  "prefix": "frontend-contest",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/frontend-contest",
+        "index": "apps/frontend-contest/src/index.html",
+        "main": "apps/frontend-contest/src/main.ts",
+        "polyfills": "apps/frontend-contest/src/polyfills.ts",
+        "tsConfig": "apps/frontend-contest/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/frontend-contest/src/favicon.ico",
+          "apps/frontend-contest/src/assets"
+        ],
+        "styles": [
+          "apps/frontend-contest/src/styles.scss"
+        ],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/frontend-contest/src/environments/environment.ts",
+              "with": "apps/frontend-contest/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "frontend-contest:build:production"
+        },
+        "development": {
+          "browserTarget": "frontend-contest:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/frontend-contest/proxy.conf.json"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "frontend-contest:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/frontend-contest/**/*.ts",
+          "apps/frontend-contest/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/apps/frontend-contest"
+      ],
+      "options": {
+        "jestConfig": "apps/frontend-contest/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [
+    "scope:frontend-contest"
+  ]
+}

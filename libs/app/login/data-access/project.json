@@ -1,0 +1,41 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/app/login/data-access/src",
+  "prefix": "fc",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/app/login/data-access"],
+      "options": {
+        "project": "libs/app/login/data-access/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/app/login/data-access/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/app/login/data-access/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/app/login/data-access"],
+      "options": {
+        "jestConfig": "libs/app/login/data-access/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/app/login/data-access/**/*.ts",
+          "libs/app/login/data-access/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:login", "type:data-access"]
+}

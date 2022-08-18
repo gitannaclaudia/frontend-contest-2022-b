@@ -1,0 +1,54 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@frontend-contest/api/auth": ["libs/api/auth/src/index.ts"],
+      "@frontend-contest/api/database": ["libs/api/database/src/index.ts"],
+      "@frontend-contest/api/users": ["libs/api/users/src/index.ts"],
+      "@frontend-contest/app/login/data-access": [
+        "libs/app/login/data-access/src/index.ts"
+      ],
+      "@frontend-contest/app/login/feature/login": [
+        "libs/app/login/feature/login/src/index.ts"
+      ],
+      "@frontend-contest/app/login/feature/recovery": [
+        "libs/app/login/feature/recovery/src/index.ts"
+      ],
+      "@frontend-contest/app/login/feature/shell": [
+        "libs/app/login/feature/shell/src/index.ts"
+      ],
+      "@frontend-contest/app/users/data-access": [
+        "libs/app/users/data-access/src/index.ts"
+      ],
+      "@frontend-contest/app/users/feature/edit": [
+        "libs/app/users/feature/edit/src/index.ts"
+      ],
+      "@frontend-contest/app/users/feature/list": [
+        "libs/app/users/feature/list/src/index.ts"
+      ],
+      "@frontend-contest/app/users/feature/shell": [
+        "libs/app/users/feature/shell/src/index.ts"
+      ],
+      "@frontend-contest/shared-api-interfaces": [
+        "libs/shared/api/interfaces/src/index.ts"
+      ],
+      "@frontend-contest/shared/app/data-access": [
+        "libs/shared/app/data-access/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

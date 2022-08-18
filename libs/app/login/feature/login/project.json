@@ -1,0 +1,48 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/app/login/feature/login/src",
+  "prefix": "fc",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": [
+        "dist/libs/app/login/feature/login"
+      ],
+      "options": {
+        "project": "libs/app/login/feature/login/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/app/login/feature/login/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/app/login/feature/login/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/app/login/feature/login"
+      ],
+      "options": {
+        "jestConfig": "libs/app/login/feature/login/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/app/login/feature/login/**/*.ts",
+          "libs/app/login/feature/login/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "type:feature",
+    "scope:login"
+  ]
+}

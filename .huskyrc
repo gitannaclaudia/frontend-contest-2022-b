@@ -1,0 +1,5 @@
+{
+  "hooks": {
+    "pre-commit": "nx affected:lint --base=HEAD --quiet"
+  }
+}

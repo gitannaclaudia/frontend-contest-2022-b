@@ -1,0 +1,41 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/app/users/feature/shell/src",
+  "prefix": "fc",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/app/users/feature/shell"],
+      "options": {
+        "project": "libs/app/users/feature/shell/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/app/users/feature/shell/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/app/users/feature/shell/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/app/users/feature/shell"],
+      "options": {
+        "jestConfig": "libs/app/users/feature/shell/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/app/users/feature/shell/**/*.ts",
+          "libs/app/users/feature/shell/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:feature", "scope:users"]
+}

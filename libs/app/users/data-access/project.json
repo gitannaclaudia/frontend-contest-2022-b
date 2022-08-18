@@ -1,0 +1,41 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/app/users/data-access/src",
+  "prefix": "fc",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/app/users/data-access"],
+      "options": {
+        "project": "libs/app/users/data-access/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/app/users/data-access/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/app/users/data-access/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/app/users/data-access"],
+      "options": {
+        "jestConfig": "libs/app/users/data-access/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/app/users/data-access/**/*.ts",
+          "libs/app/users/data-access/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:data-access", "scope:users"]
+}

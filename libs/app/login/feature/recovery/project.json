@@ -1,0 +1,48 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/app/login/feature/recovery/src",
+  "prefix": "fc",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": [
+        "dist/libs/app/login/feature/recovery"
+      ],
+      "options": {
+        "project": "libs/app/login/feature/recovery/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/app/login/feature/recovery/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/app/login/feature/recovery/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/app/login/feature/recovery"
+      ],
+      "options": {
+        "jestConfig": "libs/app/login/feature/recovery/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/app/login/feature/recovery/**/*.ts",
+          "libs/app/login/feature/recovery/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": [
+    "type:feature",
+    "scope:login"
+  ]
+}

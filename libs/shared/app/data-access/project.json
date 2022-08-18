@@ -1,0 +1,41 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/shared/app/data-access/src",
+  "prefix": "frontend-contest",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/shared/app/data-access"],
+      "options": {
+        "project": "libs/shared/app/data-access/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/shared/app/data-access/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/shared/app/data-access/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/shared/app/data-access"],
+      "options": {
+        "jestConfig": "libs/shared/app/data-access/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/shared/app/data-access/**/*.ts",
+          "libs/shared/app/data-access/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:frontend-contest", "type:data-access"]
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/api/database/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/api/database",
+        "tsConfig": "libs/api/database/tsconfig.lib.json",
+        "packageJson": "libs/api/database/package.json",
+        "main": "libs/api/database/src/index.ts",
+        "assets": [
+          "libs/api/database/*.md"
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/database/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/api/database"
+      ],
+      "options": {
+        "jestConfig": "libs/api/database/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [
+    "scope:api"
+  ]
+}
