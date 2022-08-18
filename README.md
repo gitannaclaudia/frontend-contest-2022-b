@@ -38,7 +38,7 @@ As telas de lista e edição de usuário só podem ser acessadas quando o usuár
 ## API
 
 * Na raíz do repositório há um
-  arquivo [Insomnia.json](https://github.com/cguilhermef/frontend-contest-2022-b/blob/main/Insominia.json) que contem
+  arquivo [Insomnia.json](https://github.com/cguilhermef/frontend-contest-2022-b/blob/main/Insomnia.json) que contem
   todos os endpoints da API, com exemplos de uso.
 * O banco de dados da API volta ao estado original sempre que a API for reiniciada.
 * Os tokens tem 1h de expiração e vão continuar funcionando mesmo que o usuário seja excluído, pois não foi implementada
