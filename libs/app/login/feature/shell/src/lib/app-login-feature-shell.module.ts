@@ -5,23 +5,24 @@ import { RouterModule } from '@angular/router';
 import { AppLoginFeatureLoginModule, FeatureLoginComponent } from '@frontend-contest/app/login/feature/login';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild([
-            {
-                path: '',
-                component: FeatureShellComponent,
-                children: [
-                    {
-                        path: '',
-                        pathMatch: 'full',
-                        component: FeatureLoginComponent,
-                    },
-                ],
-            },
-        ]),
-        AppLoginFeatureLoginModule,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule.forChild([
+      {
+        path: '',
+        component: FeatureShellComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: FeatureLoginComponent,
+          },
+        ],
+      },
+    ]),
+    AppLoginFeatureLoginModule,
+  ],
   declarations: [FeatureShellComponent],
 })
-export class AppLoginFeatureShellModule {}
+export class AppLoginFeatureShellModule {
+}

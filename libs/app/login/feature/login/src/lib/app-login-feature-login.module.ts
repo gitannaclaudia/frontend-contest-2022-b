@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatureLoginComponent } from './feature-login';
 import { RouterModule } from '@angular/router';
@@ -26,5 +26,6 @@ import { NgxMatErrorsModule } from "ngx-mat-errors";
   ],
   declarations: [FeatureLoginComponent],
   exports: [FeatureLoginComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppLoginFeatureLoginModule {}

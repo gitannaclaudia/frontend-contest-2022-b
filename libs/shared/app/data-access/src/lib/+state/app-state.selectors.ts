@@ -1,6 +1,10 @@
 import { createFeatureSelector } from '@ngrx/store';
 import * as fromAppState from './app-state.reducer';
 
-export const selectAppStateState = createFeatureSelector<fromAppState.State>(
+export interface AppState {
+  authState: fromAppState.State
+}
+
+export const selectAppStateState = createFeatureSelector<AppState>(
   fromAppState.appStateFeatureKey
 );

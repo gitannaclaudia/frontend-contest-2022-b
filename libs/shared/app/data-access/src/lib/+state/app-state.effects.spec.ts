@@ -3,6 +3,8 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { Observable } from 'rxjs';
 
 import { AppStateEffects } from './app-state.effects';
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { RouterTestingModule } from "@angular/router/testing";
 
 describe('AppStateEffects', () => {
   let actions$: Observable<any>;
@@ -10,6 +12,7 @@ describe('AppStateEffects', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [
         AppStateEffects,
         provideMockActions(() => actions$)
