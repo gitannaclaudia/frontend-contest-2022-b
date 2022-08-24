@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": ["dist/libs/app/login/data-access"],
+      "outputs": [
+        "dist/libs/app/login/data-access"
+      ],
       "options": {
         "project": "libs/app/login/data-access/ng-package.json"
       },
@@ -21,7 +23,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/app/login/data-access"],
+      "outputs": [
+        "coverage/libs/app/login/data-access"
+      ],
       "options": {
         "jestConfig": "libs/app/login/data-access/jest.config.ts",
         "passWithNoTests": true
@@ -37,5 +41,8 @@
       }
     }
   },
-  "tags": ["scope:login", "type:data-access"]
+  "tags": [
+    "scope:login",
+    "type:data-access"
+  ]
 }

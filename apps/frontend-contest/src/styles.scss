@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@import '@angular/material';
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$deep-purple-palette, 500);
+$secondary: mat.define-palette(mat.$grey-palette, 500);
+$warn: mat.define-palette(mat.$red-palette);
+
+$theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $primary,
+        accent: $primary,
+        warn: $warn,
+        secondary: $secondary
+      ),
+    )
+);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-form-field {
+  display: grid !important;
+}
+
+.mat-dialog-content {
+  overflow: visible !important;
+}
+
+a.mat-list-item, .mat-line {
+  color: #673AB7FF;
+  :hover {
+    background-color: rgb(201, 187, 236);
+  }
+}

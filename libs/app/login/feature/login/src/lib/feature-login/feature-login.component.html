@@ -1,2 +1,40 @@
-<p>feature-login works!</p>
-<a routerLink="/users">Login</a>
+<mat-card class="card-wrapper">
+  <mat-card-title>Login</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="loginForm">
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="email"
+            autocomplete="off">
+          <mat-error ngx-mat-errors></mat-error>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field style="width: 100%;" aria-autocomplete="none" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            formControlName="password"
+            autocomplete="new-password">
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          <mat-error ngx-mat-errors></mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="row align-button">
+      <button mat-raised-button color="primary" (click)="login()">Login</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+

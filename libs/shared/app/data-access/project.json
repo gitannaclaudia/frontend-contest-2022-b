@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": ["dist/libs/shared/app/data-access"],
+      "outputs": [
+        "dist/libs/shared/app/data-access"
+      ],
       "options": {
         "project": "libs/shared/app/data-access/ng-package.json"
       },
@@ -21,7 +23,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/shared/app/data-access"],
+      "outputs": [
+        "coverage/libs/shared/app/data-access"
+      ],
       "options": {
         "jestConfig": "libs/shared/app/data-access/jest.config.ts",
         "passWithNoTests": true
@@ -37,5 +41,8 @@
       }
     }
   },
-  "tags": ["scope:frontend-contest", "type:data-access"]
+  "tags": [
+    "scope:frontend-contest",
+    "type:data-access"
+  ]
 }
