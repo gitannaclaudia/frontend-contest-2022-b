@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   styleUrls: ['./feature-login.component.scss'],
 })
 export class FeatureLoginComponent  {
-  @Output() submit: EventEmitter<Authenticate> = new EventEmitter<Authenticate>();
+  @Output() submitted: EventEmitter<Authenticate> = new EventEmitter<Authenticate>();
   public hide = true;
 
   public loginForm: FormGroup = this._formBuilder.group({
@@ -23,7 +23,7 @@ export class FeatureLoginComponent  {
   ) {}
 
   public login() {
-    this.submit.emit({
+    this.submitted.emit({
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     });
