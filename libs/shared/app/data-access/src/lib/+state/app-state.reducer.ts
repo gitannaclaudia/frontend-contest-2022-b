@@ -6,14 +6,14 @@ export const appStateFeatureKey = 'appState';
 
 export interface State {
   isAuthenticate: boolean;
-  user: User | null;
-  errorMessage: string | null;
+  access_token?: string;
+  user?: User;
+  errorMessage?: string;
 }
 
 export const initialState: State = {
   isAuthenticate: false,
-  user: null,
-  errorMessage: null
+  access_token: '',
 };
 
 export const reducer = createReducer(
@@ -23,13 +23,7 @@ export const reducer = createReducer(
     (state, user) => ({
       ...state,
       isAuthenticate: true,
-      user: {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        token: user.token,
-      },
-      errorMessage: null
+      access_token: user.access_token,
     })
   ),
   on(

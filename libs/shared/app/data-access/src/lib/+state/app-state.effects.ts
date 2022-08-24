@@ -15,13 +15,9 @@ export class AppStateEffects {
       ofType(AppStateActions.signIn),
       concatMap(auth => {
         return this.loginService$.login(auth.email, auth.password)
-          .pipe(map((user) => {
+          .pipe(map((token) => {
             return AppStateActions.signInSuccess({
-              id: user.id,
-              name: user.name,
-              email: user.email,
-              password: user.password,
-              token: user.token,
+              access_token: token.access_token,
             });
           }),
             catchError((error) => {
@@ -36,9 +32,8 @@ export class AppStateEffects {
       ofType(AppStateActions.signInSuccess),
       map((value) => value),
       tap(value => {
-        if (value.name && value.token) {
-          localStorage.setItem('token', value.token);
-          localStorage.setItem('name', value.name);
+        if (value.access_token) {
+          localStorage.setItem('token', value.access_token);
         }
         this.router$.navigateByUrl('/users');
       })
