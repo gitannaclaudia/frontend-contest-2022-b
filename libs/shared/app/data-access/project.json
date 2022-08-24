@@ -42,7 +42,7 @@
     }
   },
   "tags": [
-    "scope:frontend-contest",
+    "scope:shared",
     "type:data-access"
   ]
 }

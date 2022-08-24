@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-local';
-import { ApiAuthService } from '@frontend-contest/api/auth';
+import { ApiAuthService } from './api-auth.service';
 import { User } from '@frontend-contest/shared-api-interfaces';
 
 @Injectable()

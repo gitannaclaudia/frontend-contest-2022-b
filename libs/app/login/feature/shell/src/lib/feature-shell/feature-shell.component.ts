@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { Store } from "@ngrx/store";
-import * as fromAppState from '../../../../../../../shared/app/data-access/src/lib/+state/app-state.reducer';
-import * as AppStateActions from '../../../../../../../shared/app/data-access/src/lib/+state/app-state.actions';
 import { Authenticate } from "@frontend-contest/shared-api-interfaces";
+import {AppStateActions} from "@frontend-contest/shared/app/data-access";
 
 @Component({
   selector: 'fc-feature-shell',
@@ -14,7 +13,7 @@ export class FeatureShellComponent implements OnInit {
   public getState?: Observable<any>;
   public errorMessage?: string;
 
-  constructor(private _store: Store<fromAppState.State>) {}
+  constructor(private _store: Store) {}
 
   ngOnInit(): void {
     this.getState?.subscribe((state) => {

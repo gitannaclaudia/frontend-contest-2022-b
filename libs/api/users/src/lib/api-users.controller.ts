@@ -13,7 +13,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '@frontend-contest/api/auth';
-import { ApiUsersService } from '@frontend-contest/api/users';
+import { ApiUsersService } from './api-users.service';
 
 @Controller('users')
 export class ApiUsersController {

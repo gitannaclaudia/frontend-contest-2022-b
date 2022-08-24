@@ -14,9 +14,13 @@ export class ApiDatabaseService {
   db: LowdbAsync<Data> | undefined;
 
   async onApplicationBootstrap() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const adapter = new FileAsync<Data>(
       path.join(__dirname, 'database', 'db.json')
     );
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     this.db = await lowdb(adapter);
     await this.db
       ?.defaults({
