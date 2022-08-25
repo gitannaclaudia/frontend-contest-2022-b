@@ -20,8 +20,6 @@ export class AuthGuard implements CanActivate {
     return this.loginService.login$.pipe(
       map(token => {
         if (token) {
-          // eslint-disable-next-line no-debugger
-          debugger;
           return true;
         } else {
           this.router.navigate(['/login']);

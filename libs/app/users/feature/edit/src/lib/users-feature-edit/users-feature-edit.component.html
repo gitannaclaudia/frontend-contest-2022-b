@@ -1,1 +1,65 @@
-<p>users-feature-edit works!</p>
+<h2 mat-dialog-title>{{ user?.id ? 'Editar Usuário' : 'Cadastrar Usuário' }}</h2>
+<mat-dialog-content>
+  <div *ngIf="errorMessage">
+    <div class="alert alert-danger" role="alert">
+      {{errorMessage}}
+    </div>
+  </div>
+  <form
+    [formGroup]="userForm"
+    class="form-group">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          name="name"
+          id="name"
+          autocomplete="off"
+          formControlName="name"
+          class="form-control"
+        />
+        <mat-error ngx-mat-errors></mat-error>
+      </mat-form-field>
+      <div class="row">
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input
+            matInput
+            name="email"
+            id="email"
+            autocomplete="off"
+            formControlName="email"
+            class="form-control"
+            placeholder="{{ 'email' }}"
+          />
+        </mat-form-field>
+        <mat-error ngx-mat-errors></mat-error>
+      </div>
+    </div>
+    <div class="row">
+      <mat-form-field style="width: 100%;" aria-autocomplete="none" appearance="outline">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+          autocomplete="new-password"
+          class="form-control"
+        >
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error ngx-mat-errors></mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <mat-dialog-actions align="center">
+    <button mat-raised-button class="btn-sm btn-secondary" mat-dialog-close="" (click)="close()">Cancel</button>
+    <button mat-raised-button color="primary" class="btn-sm btn-primary" (click)="save()">Save</button>
+  </mat-dialog-actions>
+</mat-dialog-content>

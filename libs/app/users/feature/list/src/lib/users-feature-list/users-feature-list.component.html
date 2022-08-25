@@ -1,1 +1,41 @@
-<p>users-feature-list works!</p>
+<ng-container>
+  <mat-toolbar color="primary">
+    <span>Bem-vindo(a), {{ userEmail }}!</span>
+    <span class="spacer"></span>
+    <button
+      mat-icon-button
+      matTooltip="Adicionar usuários"
+      class="m-4"
+      (click)="openDialog(user!)"
+    >
+      <mat-icon>person_add</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      matTooltip="Sair"
+      class="m-4"
+      (click)="logout()"
+    >
+      <mat-icon>open_in_browser</mat-icon>
+    </button>
+  </mat-toolbar>
+  <div *ngIf="errorMessage">
+    <div class="alert alert-danger" role="alert">
+      {{errorMessage}}
+    </div>
+  </div>
+  <mat-nav-list disableRipple="true">
+    <a mat-list-item *ngFor="let user of users">
+      <mat-icon matListAvatar>person</mat-icon>
+      <h3 matLine>{{ user.name }}</h3>
+      <p matLine>{{ user.email }}</p>
+      <button
+        *ngIf="user.email !== userEmail"
+        mat-icon-button
+        (click)="openDialog(user)"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </a>
+  </mat-nav-list>
+</ng-container>

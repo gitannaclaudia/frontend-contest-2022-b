@@ -7,6 +7,7 @@ export const appStateFeatureKey = 'appState';
 export interface State {
   isAuthenticate: boolean;
   access_token?: string;
+  users?: User[];
   user?: User;
   errorMessage?: string;
 }
@@ -31,6 +32,85 @@ export const reducer = createReducer(
     (state) => ({
       ...state,
       errorMessage: 'Incorrect email and/or password'
+    })
+  ),
+  on(
+    AppStateActions.getUserSuccess,
+    (state, user) => ({
+      ...state,
+      isAuthenticate: true,
+      user: user
+    })
+  ),
+  on(
+    AppStateActions.getUserFailure,
+    (state) => ({
+      ...state,
+      isAuthenticate: true,
+      errorMessage: 'Error trying to get user, try again'
+    })
+  ),
+  on(
+    AppStateActions.getListUserSuccess,
+    (state, user) => ({
+      ...state,
+      isAuthenticate: true,
+      users: user.users
+    })
+  ),
+  on(
+    AppStateActions.getListUserFailure,
+    (state) => ({
+      ...state,
+      isAuthenticate: true,
+      errorMessage: 'Error trying to get user list, try again'
+    })
+  ),
+  on(
+    AppStateActions.createUserSuccess,
+    (state, user) => ({
+      ...state,
+      isAuthenticate: true,
+      user: user
+    })
+  ),
+  on(
+    AppStateActions.createUserFailure,
+    (state) => ({
+      ...state,
+      isAuthenticate: true,
+      errorMessage: 'Error trying to create user, try again'
+    })
+  ),
+  on(
+    AppStateActions.updateUserSuccess,
+    (state, user) => ({
+      ...state,
+      isAuthenticate: true,
+      user: user
+    })
+  ),
+  on(
+    AppStateActions.updateUserFailure,
+    (state) => ({
+      ...state,
+      isAuthenticate: true,
+      errorMessage: 'Error trying to update user, try again'
+    })
+  ),
+  on(
+    AppStateActions.deleteUserSuccess,
+    (state) => ({
+      ...state,
+      isAuthenticate: true,
+    })
+  ),
+  on(
+    AppStateActions.deleteUserFailure,
+    (state) => ({
+      ...state,
+      isAuthenticate: true,
+      errorMessage: 'Error trying to update user, try again'
     })
   )
 

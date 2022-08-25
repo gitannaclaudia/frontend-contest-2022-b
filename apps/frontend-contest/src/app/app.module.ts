@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -11,6 +11,8 @@ import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { SharedAppDataAccessModule } from '@frontend-contest/shared/app/data-access';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthGuard, AuthInterceptor } from "@frontend-contest/app/login/data-access";
+import { APP_BASE_HREF } from "@angular/common";
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
           import('@frontend-contest/app/users/feature/shell').then(
             (m) => m.AppUsersFeatureShellModule
           ),
+        canActivate: [AuthGuard]
       },
       {
         path: '',
@@ -54,7 +57,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     StoreRouterConnectingModule.forRoot(),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: APP_BASE_HREF,
+      useValue: '/'
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

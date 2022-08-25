@@ -1,6 +1,6 @@
 export interface User {
   id: number;
-  name: string;
+  name?: string;
   email: string;
   password?: string;
 }
@@ -12,4 +12,9 @@ export interface Authenticate {
 
 export interface Login {
   access_token: string;
+}
+
+export interface Profile {
+  userId: number;
+  userEmail: string;
 }

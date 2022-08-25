@@ -7,12 +7,12 @@ import { Login } from "@frontend-contest/shared-api-interfaces";
   providedIn: 'root',
 })
 export class LoginService {
-  private loginSubject$ = new BehaviorSubject(null);
+  private token = localStorage.getItem('token');
+  private loginSubject$ = new BehaviorSubject(this.token);
   login$ = this.loginSubject$.asObservable();
   constructor(private http$: HttpClient) {
-    const login = localStorage.getItem('token');
-    if (login) {
-      this.loginSubject$.next(JSON.parse(login));
+    if (this.token) {
+      this.loginSubject$.next(this.token);
     }
   }
 
