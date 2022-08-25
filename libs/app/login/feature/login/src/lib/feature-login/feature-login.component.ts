@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Authenticate } from "@frontend-contest/shared-api-interfaces";
-import { LoginService } from "@frontend-contest/app/login/data-access";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
@@ -18,8 +17,7 @@ export class FeatureLoginComponent  {
   });
 
   constructor(
-    private _formBuilder: FormBuilder,
-    private _service: LoginService
+    private _formBuilder: FormBuilder
   ) {}
 
   public login() {

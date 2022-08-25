@@ -5,6 +5,6 @@ export interface AppState {
   authState: fromAppState.State
 }
 
-export const selectAppStateState = createFeatureSelector<AppState>(
+export const selectAppStateState = createFeatureSelector<fromAppState.State>(
   fromAppState.appStateFeatureKey
 );

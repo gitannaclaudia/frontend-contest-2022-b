@@ -4,5 +4,5 @@
       {{errorMessage}}
     </div>
   </div>
-  <fc-feature-login (submitted)="login($event)"></fc-feature-login>
+  <router-outlet (activate)="subscribeToEmitter($event)" (deactivate)="unsubscribe()"></router-outlet>
 </ng-container>

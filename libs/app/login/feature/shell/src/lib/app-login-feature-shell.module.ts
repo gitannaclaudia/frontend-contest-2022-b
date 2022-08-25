@@ -10,8 +10,14 @@ import { AppLoginFeatureLoginModule, FeatureLoginComponent } from '@frontend-con
     RouterModule.forChild([
       {
         path: '',
-        component: FeatureShellComponent
-
+        component: FeatureShellComponent,
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            component: FeatureLoginComponent,
+          },
+        ],
       },
     ]),
     AppLoginFeatureLoginModule,
