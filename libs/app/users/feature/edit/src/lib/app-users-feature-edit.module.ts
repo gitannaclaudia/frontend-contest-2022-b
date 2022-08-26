@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersFeatureEditComponent } from './users-feature-edit';
 import { RouterModule } from '@angular/router';
-import { MatDialogModule } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
@@ -28,6 +28,11 @@ import { MatButtonModule } from "@angular/material/button";
     NgxMatErrorsModule,
     MatButtonModule,
   ],
+  providers: [
+    {provide: MatDialogRef, useValue: {}},
+    {provide: MAT_DIALOG_DATA, useValue: []},
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [UsersFeatureEditComponent],
 })
 export class AppUsersFeatureEditModule {}

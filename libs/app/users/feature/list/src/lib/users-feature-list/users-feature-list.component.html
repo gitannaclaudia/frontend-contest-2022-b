@@ -24,18 +24,34 @@
       {{errorMessage}}
     </div>
   </div>
-  <mat-nav-list disableRipple="true">
+  <mat-nav-list disableRipple="true" (load)="list()">
     <a mat-list-item *ngFor="let user of users">
       <mat-icon matListAvatar>person</mat-icon>
       <h3 matLine>{{ user.name }}</h3>
       <p matLine>{{ user.email }}</p>
       <button
-        *ngIf="user.email !== userEmail"
+        *ngIf="user?.email !== userEmail"
         mat-icon-button
+        matTooltip="Editar Usuário"
         (click)="openDialog(user)"
       >
         <mat-icon>edit</mat-icon>
       </button>
+      <button
+        *ngIf="user?.email !== userEmail"
+        mat-icon-button
+        matTooltip="Remover Usuário"
+        class="m-4"
+        (click)="deleteUser(user)"
+      >
+        <mat-icon>person_remove</mat-icon>
+      </button>
+      <mat-icon
+        *ngIf="user?.email === userEmail"
+        matTooltip="É você"
+        class="m-4"
+      >person</mat-icon>
     </a>
   </mat-nav-list>
 </ng-container>
+<router-outlet></router-outlet>

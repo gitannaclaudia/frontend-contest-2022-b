@@ -15,20 +15,6 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/materia
         component: UsersFeatureShellComponent,
         children: [
           {
-            path: ':userId/edit',
-            loadChildren: () =>
-              import('@frontend-contest/app/users/feature/edit').then(
-                (m) => m.AppUsersFeatureEditModule
-              ),
-          },
-          {
-            path: 'create',
-            loadChildren: () =>
-              import('@frontend-contest/app/users/feature/edit').then(
-                (m) => m.AppUsersFeatureEditModule
-              ),
-          },
-          {
             path: '',
             pathMatch: 'full',
             loadChildren: () =>
@@ -40,12 +26,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/materia
       },
     ]),
     AppUsersFeatureListModule,
-    AppUsersFeatureEditModule,
     MatDialogModule
-  ],
-  providers: [
-    {provide: MatDialogRef, useValue: {}},
-    {provide: MAT_DIALOG_DATA, useValue: []},
   ],
   declarations: [UsersFeatureShellComponent],
 })

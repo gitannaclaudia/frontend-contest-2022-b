@@ -17,10 +17,12 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = localStorage.getItem('token');
     if (token) {
       const authReq = request.clone({
-        headers: request.headers.set(
-          'Authorization', `bearer ${token}`
-        )
-      });
+        setHeaders: {
+          'Authorization': `bearer ${token}`,
+          'Content-Type': `application/json`
+        }
+      }
+    );
       return next.handle(authReq);
     } else {
       return next.handle(request)

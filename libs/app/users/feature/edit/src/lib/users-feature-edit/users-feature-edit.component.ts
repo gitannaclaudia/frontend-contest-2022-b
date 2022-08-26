@@ -1,12 +1,11 @@
-import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AppUsersService } from "@frontend-contest/app/users/data-access";
-import { Router } from "@angular/router";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { User } from "@frontend-contest/shared-api-interfaces";
 import { Store } from "@ngrx/store";
-import { AppStateSelectors } from "@frontend-contest/shared/app/data-access";
+import { AppStateActions, AppStateSelectors } from "@frontend-contest/shared/app/data-access";
 
 @Component({
   selector: 'fc-users-feature-edit',
@@ -14,11 +13,11 @@ import { AppStateSelectors } from "@frontend-contest/shared/app/data-access";
   styleUrls: ['./users-feature-edit.component.scss'],
 })
 export class UsersFeatureEditComponent implements OnInit{
-  @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
-  public id = 0;
+  public id: number | undefined;
   public hide = true;
   public getState?: Observable<any>;
   public errorMessage?: string | null;
+  public routeName?: string;
 
 
   public userForm:FormGroup = this._fb.group({
@@ -30,18 +29,18 @@ export class UsersFeatureEditComponent implements OnInit{
   constructor(
     private _fb: FormBuilder,
     private _service: AppUsersService,
-    protected _router: Router,
     private _dialogRef: MatDialogRef<UsersFeatureEditComponent>,
     @Inject(MAT_DIALOG_DATA) public user: User,
     private _store: Store,
   ) {
+    this.routeName = this.id != 0 ? 'editPanel' : 'createPanel';
     this.getState = this._store.select(AppStateSelectors.selectAppStateState);
   }
 
   ngOnInit() {
     this.getState?.subscribe((state) => {
       this.errorMessage = state?.errorMessage;
-    })
+    });
   }
 
   public save() {
@@ -52,13 +51,15 @@ export class UsersFeatureEditComponent implements OnInit{
       password: this.userForm.value.password
     }
     if (this.userForm.valid && !this.user) {
-      this.submitted.emit(user);
-      this._dialogRef.close('ok');
+      this._store.dispatch(AppStateActions.createUser(user));
     } else if (this.userForm.valid && this.user) {
       user.id = this.user.id;
-      this.submitted.emit(user);
-      this._dialogRef.close('ok');
+      this._store.dispatch(AppStateActions.updateUser(user));
     }
+    this._dialogRef.afterClosed().subscribe(() => {
+      this._store.dispatch(AppStateActions.getListUser());
+    });
+    this._dialogRef.close('ok');
   }
 
   public close() {

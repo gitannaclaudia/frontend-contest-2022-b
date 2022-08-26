@@ -1,8 +1,1 @@
-<ng-container>
-  <div *ngIf="errorMessage">
-    <div class="alert alert-danger" role="alert">
-      {{errorMessage}}
-    </div>
-  </div>
-  <router-outlet (activate)="subscribeToEmitter($event)" (deactivate)="unsubscribe()"></router-outlet>
-</ng-container>
+<router-outlet></router-outlet>

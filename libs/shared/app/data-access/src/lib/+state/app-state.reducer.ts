@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import * as AppStateActions from './app-state.actions';
-import { User } from "@frontend-contest/shared-api-interfaces";
+import { authUser, User } from "@frontend-contest/shared-api-interfaces";
 
 export const appStateFeatureKey = 'appState';
 
@@ -8,6 +8,7 @@ export interface State {
   isAuthenticate: boolean;
   access_token?: string;
   users?: User[];
+  authUser?: authUser;
   user?: User;
   errorMessage?: string;
 }
@@ -36,10 +37,10 @@ export const reducer = createReducer(
   ),
   on(
     AppStateActions.getUserSuccess,
-    (state, user) => ({
+    (state, authUser) => ({
       ...state,
       isAuthenticate: true,
-      user: user
+      authUser: authUser
     })
   ),
   on(

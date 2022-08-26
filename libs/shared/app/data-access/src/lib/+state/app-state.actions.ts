@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Authenticate, Login, Profile, User } from "@frontend-contest/shared-api-interfaces";
+import { Authenticate, authUser, Login, Profile, User } from "@frontend-contest/shared-api-interfaces";
 
 export const signIn = createAction(
   '[Auth] Login',
@@ -22,7 +22,7 @@ export const getUser = createAction (
 
 export const getUserSuccess = createAction (
   '[Auth] Get User Success',
-  props<User>()
+  props<authUser>()
 );
 
 export const getUserFailure = createAction (

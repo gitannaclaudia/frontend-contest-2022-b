@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FeatureShellComponent } from './feature-shell';
 import { RouterModule } from '@angular/router';
 import { AppLoginFeatureLoginModule, FeatureLoginComponent } from '@frontend-contest/app/login/feature/login';
+import { AuthGuard } from "@frontend-contest/app/login/data-access";
 
 @NgModule({
   imports: [

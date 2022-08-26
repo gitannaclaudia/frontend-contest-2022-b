@@ -10,11 +10,17 @@ import { Store } from "@ngrx/store";
   providedIn: 'root',
 })
 export class AppUsersService {
-  private token = localStorage.getItem('token');
-  private loginSubject$ = new BehaviorSubject(this.token);
+  private token$?: string | null;
+  private loginSubject$?: BehaviorSubject<string | null>;
   constructor(private http$: HttpClient, private _store: Store) {
-    if (this.token) {
-      this.loginSubject$.next(this.token);
+    this.getUserToken();
+  }
+
+  public async getUserToken() {
+    this.token$ = localStorage.getItem('token');
+    this.loginSubject$ = new BehaviorSubject(this.token$);
+    this.loginSubject$.next(this.token$);
+    if (this.token$) {
       this._store.dispatch(AppStateActions.getUser());
     }
   }

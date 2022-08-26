@@ -25,7 +25,8 @@ export class AppStateEffects {
           }),
             catchError((error) => {
               return of(AppStateActions.singInFailure({error: error}));
-            }))
+            })
+          )
       }),
     );
   });
@@ -34,18 +35,23 @@ export class AppStateEffects {
     return this.actions$.pipe(
       ofType(AppStateActions.signInSuccess),
       map((value) => value),
-      tap(value => {
+      tap(async value => {
         if (value.access_token) {
           localStorage.setItem('token', value.access_token);
         }
-        this.router$.navigate(['/users']);
+        await this.router$.navigate(['/users']);
       })
     )
   }, { dispatch: false });
 
   signInFailure = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AppStateActions.singInFailure)
+      ofType(AppStateActions.singInFailure),
+      tap((error) => {
+        return AppStateActions.singInFailure({
+          error: error.error
+        });
+      })
     )
   }, { dispatch: false });
 
@@ -55,7 +61,7 @@ export class AppStateEffects {
       concatMap(() => {
         return this.userService$.getUser()
           .pipe(map((user) => {
-            localStorage.setItem('email', user.userEmail);
+              localStorage.setItem('email', user.userEmail);
               return AppStateActions.getUserSuccess({
                 id: user.userId,
                 email: user.userEmail
@@ -72,9 +78,9 @@ export class AppStateEffects {
     return this.actions$.pipe(
       ofType(AppStateActions.getUserSuccess),
       map((value) => value),
-      tap(value => {
+      tap(async value => {
         if (value.id) {
-          this.router$.navigateByUrl('/users');
+          await this.router$.navigateByUrl('/users');
         }
         return;
       })
@@ -83,7 +89,12 @@ export class AppStateEffects {
 
   getUserFailure = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AppStateActions.getUserFailure)
+      ofType(AppStateActions.getUserFailure),
+      tap((error) => {
+        return AppStateActions.getUserFailure({
+          error: error.error
+        });
+      })
     )
   }, { dispatch: false });
 
@@ -119,15 +130,21 @@ export class AppStateEffects {
 
   getListUserFailure = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AppStateActions.getListUserFailure)
+      ofType(AppStateActions.getListUserFailure),
+      tap((error) => {
+        return AppStateActions.getListUserFailure({
+          error: error.error
+        });
+      })
     )
   }, { dispatch: false });
 
   logOut = createEffect(() => {
     return this.actions$.pipe(
       ofType(AppStateActions.logOut),
-      tap((user) => {
+      tap(() => {
         localStorage.removeItem('token');
+        localStorage.removeItem('email');
         this.router$.navigateByUrl('/login');
       })
     )
@@ -167,7 +184,12 @@ export class AppStateEffects {
 
   createUserFailure = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AppStateActions.createUserFailure)
+      ofType(AppStateActions.createUserFailure),
+      tap((error) => {
+        return AppStateActions.createUserFailure({
+          error: error.error
+        });
+      })
     )
   }, { dispatch: false });
 
@@ -176,7 +198,7 @@ export class AppStateEffects {
       ofType(AppStateActions.updateUser),
       concatMap((user) => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        return this.userService$.update(user.id, user.name!, user.email, user.password!).pipe(
+        return this.userService$.update(user.id!, user.name!, user.email, user.password!).pipe(
           map((newUser) => {
             return AppStateActions.updateUserSuccess({
               id: newUser.id,
@@ -205,7 +227,12 @@ export class AppStateEffects {
 
   updateUserFailure = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AppStateActions.updateUserFailure)
+      ofType(AppStateActions.updateUserFailure),
+      tap((error) => {
+        return AppStateActions.updateUserFailure({
+          error: error.error
+        });
+      })
     )
   }, { dispatch: false });
 
@@ -214,7 +241,7 @@ export class AppStateEffects {
       ofType(AppStateActions.deleteUser),
       concatMap((user) => {
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        return this.userService$.delete(user.id).pipe(
+        return this.userService$.delete(user.id!).pipe(
           map(() => {
             return AppStateActions.deleteUserSuccess();
           }),
@@ -239,7 +266,12 @@ export class AppStateEffects {
 
   deleteUserFailure = createEffect(() => {
     return this.actions$.pipe(
-      ofType(AppStateActions.deleteUserFailure)
+      ofType(AppStateActions.deleteUserFailure),
+      tap((error) => {
+        return AppStateActions.deleteUserFailure({
+          error: error.error
+        });
+      })
     )
   }, { dispatch: false });
 
