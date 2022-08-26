@@ -1,27 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Profile, User } from '@frontend-contest/shared-api-interfaces';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { AppStateActions } from "@frontend-contest/shared/app/data-access";
 import { Store } from "@ngrx/store";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppUsersService {
-  private token$?: string | null;
-  private loginSubject$?: BehaviorSubject<string | null>;
+  private token$?: boolean;
   constructor(private http$: HttpClient, private _store: Store) {
-    this.getUserToken();
   }
 
   public async getUserToken() {
-    this.token$ = localStorage.getItem('token');
-    this.loginSubject$ = new BehaviorSubject(this.token$);
-    this.loginSubject$.next(this.token$);
+    this.token$ = !!localStorage.getItem('token');
     if (this.token$) {
-      this._store.dispatch(AppStateActions.getUser());
+      await this.getUser();
     }
   }
 

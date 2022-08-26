@@ -18,6 +18,7 @@ import { ApiDatabaseModule } from '@frontend-contest/api/database';
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: { expiresIn: '1h' },
+      verifyOptions: { ignoreExpiration: true },
     }),
   ],
 })

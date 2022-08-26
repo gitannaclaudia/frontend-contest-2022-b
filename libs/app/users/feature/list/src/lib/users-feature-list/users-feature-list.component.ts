@@ -1,12 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { authUser, ModalEventModel, User } from "@frontend-contest/shared-api-interfaces";
+import { authUser, User } from "@frontend-contest/shared-api-interfaces";
 import { Observable, Subscription } from "rxjs";
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { AppUsersService } from "@frontend-contest/app/users/data-access";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Store } from "@ngrx/store";
 import { AppStateActions, AppStateSelectors } from "@frontend-contest/shared/app/data-access";
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { UsersFeatureEditComponent } from "@frontend-contest/app/users/feature/edit";
 import { Router } from "@angular/router";
 
@@ -17,7 +15,6 @@ import { Router } from "@angular/router";
   changeDetection: ChangeDetectionStrategy.Default,
 })
 export class UsersFeatureListComponent implements OnInit {
-  @Output() listUsers: EventEmitter<unknown> = new EventEmitter<unknown>();
   @Output() deleteUsers: EventEmitter<User> = new EventEmitter<User>();
   public users?: User[];
   public userEmail: string | null = localStorage.getItem('email');
@@ -56,6 +53,7 @@ export class UsersFeatureListComponent implements OnInit {
 
   public deleteUser(event: User) {
     this._store.dispatch(AppStateActions.deleteUser(event));
+    this.list();
   }
 
   public openDialog(user: User) {
@@ -64,17 +62,6 @@ export class UsersFeatureListComponent implements OnInit {
       height: '400px',
       data: user
     });
-  }
-
-  public modalEventReceived(event: ModalEventModel) {
-    console.log(event);
-    if (event === ModalEventModel.SAVE) {
-      switch (this.modalComponent) {
-        case UsersFeatureEditComponent:
-          this.ngOnInit();
-          break;
-      }
-    }
   }
 
   unsubscribe() {

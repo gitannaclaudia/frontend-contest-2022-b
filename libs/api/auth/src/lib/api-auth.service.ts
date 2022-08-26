@@ -16,7 +16,7 @@ export class ApiAuthService {
 
   async login(user: Partial<User>) {
     const payload = {
-      username: user.email,
+      username: user.name,
       sub: user.id,
     };
     return {

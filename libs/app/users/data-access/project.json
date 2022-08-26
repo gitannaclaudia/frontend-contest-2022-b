@@ -43,6 +43,6 @@
   },
   "tags": [
     "type:data-access",
-    "scope:users"
+    "scope:shared"
   ]
 }

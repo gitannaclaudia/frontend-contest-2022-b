@@ -2,7 +2,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { UsersFeatureListComponent } from './users-feature-list';
 import { RouterModule } from '@angular/router';
-import { AppUsersDataAccessModule } from '@frontend-contest/app/users/data-access';
+import { AppUsersDataAccessModule, AppUsersService } from '@frontend-contest/app/users/data-access';
 import { AuthGuard, AuthInterceptor } from "@frontend-contest/app/login/data-access";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatIconModule } from "@angular/material/icon";
@@ -53,6 +53,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatListModule
   ],
   providers: [
+    AppUsersService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

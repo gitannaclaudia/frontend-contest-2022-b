@@ -40,7 +40,8 @@ export const reducer = createReducer(
     (state, authUser) => ({
       ...state,
       isAuthenticate: true,
-      authUser: authUser
+      authUser: authUser,
+      errorMessage: undefined
     })
   ),
   on(

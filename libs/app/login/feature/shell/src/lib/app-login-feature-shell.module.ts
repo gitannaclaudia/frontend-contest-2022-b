@@ -18,7 +18,7 @@ import { AuthGuard } from "@frontend-contest/app/login/data-access";
             pathMatch: 'full',
             component: FeatureLoginComponent,
           },
-        ],
+        ]
       },
     ]),
     AppLoginFeatureLoginModule,

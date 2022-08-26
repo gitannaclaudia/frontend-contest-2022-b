@@ -35,11 +35,13 @@ export class AppStateEffects {
     return this.actions$.pipe(
       ofType(AppStateActions.signInSuccess),
       map((value) => value),
-      tap(async value => {
+      tap(value => {
         if (value.access_token) {
           localStorage.setItem('token', value.access_token);
         }
-        await this.router$.navigate(['/users']);
+        this.getUser.subscribe((user) => {
+          this.router$.navigate(['users']);
+        });
       })
     )
   }, { dispatch: false });
@@ -78,11 +80,11 @@ export class AppStateEffects {
     return this.actions$.pipe(
       ofType(AppStateActions.getUserSuccess),
       map((value) => value),
-      tap(async value => {
-        if (value.id) {
-          await this.router$.navigateByUrl('/users');
-        }
-        return;
+      tap((user) => {
+        return AppStateActions.getUserSuccess({
+          id: user.id,
+          email: user.email
+        });
       })
     )
   }, { dispatch: false });
@@ -91,6 +93,7 @@ export class AppStateEffects {
     return this.actions$.pipe(
       ofType(AppStateActions.getUserFailure),
       tap((error) => {
+        this.router$.navigate(['/login']);
         return AppStateActions.getUserFailure({
           error: error.error
         });
@@ -145,7 +148,7 @@ export class AppStateEffects {
       tap(() => {
         localStorage.removeItem('token');
         localStorage.removeItem('email');
-        this.router$.navigateByUrl('/login');
+        this.router$.navigate(['/login']);
       })
     )
   }, { dispatch: false });

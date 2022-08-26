@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Authenticate } from "@frontend-contest/shared-api-interfaces";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Store } from "@ngrx/store";
@@ -13,7 +13,6 @@ import { AppStateActions, AppStateSelectors } from "@frontend-contest/shared/app
 export class FeatureLoginComponent  {
   public getState?: Observable<AppStateSelectors.AppState>;
   public errorMessage?: string;
-  @Output() submitted: EventEmitter<Authenticate> = new EventEmitter<Authenticate>();
   public hide = true;
 
   public loginForm: FormGroup = this._formBuilder.group({

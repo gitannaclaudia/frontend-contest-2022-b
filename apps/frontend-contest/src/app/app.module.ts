@@ -11,8 +11,9 @@ import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { SharedAppDataAccessModule } from '@frontend-contest/shared/app/data-access';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthGuard, AuthInterceptor } from "@frontend-contest/app/login/data-access";
+import { AuthGuard, AuthInterceptor, LoginService } from "@frontend-contest/app/login/data-access";
 import { APP_BASE_HREF } from "@angular/common";
+import { AppUsersService } from "@frontend-contest/app/users/data-access";
 
 @NgModule({
   declarations: [AppComponent],
@@ -58,6 +59,8 @@ import { APP_BASE_HREF } from "@angular/common";
     BrowserAnimationsModule,
   ],
   providers: [
+    LoginService,
+    AppUsersService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

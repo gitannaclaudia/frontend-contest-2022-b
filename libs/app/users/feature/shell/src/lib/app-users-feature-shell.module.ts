@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { UsersFeatureShellComponent } from './users-feature-shell/users-feature-shell.component';
 import { RouterModule } from '@angular/router';
 import { AppUsersFeatureListModule } from "@frontend-contest/app/users/feature/list";
-import { AppUsersFeatureEditModule } from "@frontend-contest/app/users/feature/edit";
-import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
+import { AuthGuard, AuthInterceptor } from "@frontend-contest/app/login/data-access";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 @NgModule({
   imports: [
@@ -21,12 +22,25 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/materia
               import('@frontend-contest/app/users/feature/list').then(
                 (m) => m.AppUsersFeatureListModule
               ),
+            canActivate: [AuthGuard]
           },
         ],
       },
     ]),
     AppUsersFeatureListModule,
     MatDialogModule
+  ],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    {
+      provide: APP_BASE_HREF,
+      useValue: '/'
+    }
   ],
   declarations: [UsersFeatureShellComponent],
 })
